@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""0-read_file.py"""
+"""
+Contains the function "wrtie_file"
+"""
 
 
-def read_file(filename=""):
-    """Reads a text file (UTF8) and prints it to stdout
-    Args:
-        filename: text file to read
-    Returns: None
-    """
-    with open(filename, 'r', encoding="utf-8") as f:
-        for line in f:
-            print(line, end="")
+def write_file(filename="", text=""):
+    """returns the number of chars written to "filename" from "text" """
+    with open(filename, 'w', encoding='utf=8') as f:
+        return f.write(text)
