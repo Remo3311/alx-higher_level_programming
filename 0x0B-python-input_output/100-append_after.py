@@ -1,19 +1,21 @@
 #!/usr/bin/python3
-'''append_after'''
+"""100-append_after module
+"""
 
 
 def append_after(filename="", search_string="", new_string=""):
-	'''search and update'''
-	read = []
-	with open(filename, "r", encoding="utf-8") as f:
-		read = f.readlines()
-		index = 0
+    """Inserts a line of text to a file,
+    after each line containing a specific string
+    """
+    text = ""
 
-		while index < len(read):
-			if search_string in read[index]:
-				read[index:index + 1] = [read[index], new_string]
-				index += 1
-			index += 1
+    # read from filename
+    with open(filename, "r", encoding="utf-8") as f:
+        for line in f:
+            text += line
+            if search_string in line:
+                text += new_string
 
-	with open(filename, "w", encoding="utf-8") as file:
-		file.writelines(read)
+    # write to filename
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(text)

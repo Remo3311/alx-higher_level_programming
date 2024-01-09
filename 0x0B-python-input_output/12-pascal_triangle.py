@@ -1,21 +1,22 @@
 #!/usr/bin/python3
-"""method for student creation"""
+"""12-pascal_triangle Module
+"""
 
 
-class Student:
-    """Student obj, interesting how you don't have to directly
-    test for strings in a loop, python is weird"""
+def fact(i):
+    """Returns the factorial of a given integer i.e. i!"""
+    if i == 0:
+        return 1
+    return i * fact(i - 1)
 
-    def __init__(self, first_name, last_name, age):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
 
-    def to_json(self, attrs=None):
-        if attrs is None:
-            return self.__dict__
-        new_dictionary = {}
-        for key, value in self.__dict__.items():
-            if key in attrs:
-                new_dictionary[key] = value
-        return new_dictionary
+def comb(n, r):
+    """Returns the result of nCr"""
+    return fact(n) / (fact(r) * fact(n - r))
+
+
+def pascal_triangle(n):
+    """Returns a list of lists of integers representing
+    the Pascal’s triangle of n
+    """
+    return [[int(comb(x, i)) for i in range(x + 1)] for x in range(n)]

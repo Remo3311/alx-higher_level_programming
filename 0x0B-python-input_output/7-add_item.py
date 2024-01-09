@@ -1,9 +1,18 @@
 #!/usr/bin/python3
+"""7-add_item.py"""
+import sys
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
+filename = "add_item.json"
 
-import json
+# load existing list from filename
+try:
+    result = load_from_json_file(filename)
+except Exception:
+    result = []
 
+result += sys.argv[1:]
 
-def save_to_json_file(my_obj, filename):
-    with open(filename, "w", encoding="UTF-8") as f:
-        json.dump(my_obj, f)
+# write new list to filename
+save_to_json_file(result, filename)
